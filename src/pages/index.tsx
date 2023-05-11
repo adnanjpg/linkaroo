@@ -1,4 +1,3 @@
-import { useMutation } from "@tanstack/react-query";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
@@ -9,7 +8,37 @@ const CreateLinkForm = () => {
   const [linkValue, setLinkValue] = useState("");
 
   const mutation = api.links.create.useMutation();
-  const createLink = () => mutation.mutate({ points_to: linkValue });
+
+  const isValidLink = (link: string): [isValid: boolean, fullLink: string] => {
+    // the user will input something like "google.com" or "https://google.com" or "http://google.com"
+    // we need to make sure that the link is valid, and if does not have a protocol, we need to add one
+    // so that the link will work when we redirect the user to it
+
+    // if the link does not have a protocol, add one
+    if (!linkValue.startsWith("http")) {
+      link = "https://" + link;
+    }
+
+    // check if the link is valid
+    try {
+      new URL(link);
+      return [true, link];
+    } catch (_) {
+      // if the link is not valid, return false
+      return [false, link];
+    }
+  };
+
+  const createLink = () => {
+    const [isValid, link] = isValidLink(linkValue);
+
+    if (!isValid) {
+      alert("Invalid link");
+      return;
+    }
+
+    mutation.mutate({ points_to: link });
+  };
 
   return (
     <>
