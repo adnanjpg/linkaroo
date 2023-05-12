@@ -10,6 +10,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@prisma/client": "^4.11.0",
     "@tanstack/react-query": "^4.28.0",
     "@trpc/client": "^10.18.0",
@@ -20,6 +24,7 @@
     "pnpm": "^8.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-toastify": "^9.1.2",
     "superjson": "1.12.2",
     "zod": "^3.21.4"
   },
