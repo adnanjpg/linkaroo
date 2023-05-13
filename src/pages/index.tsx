@@ -7,6 +7,7 @@ import { useCallback, useMemo, useState } from "react";
 import { api } from "~/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import getBasrUrl from "./helpers/getBaseUrl";
 
 const CopyLinkButton = (props: { shortUrl: string }) => {
   const showCopyToast = useCallback(() => {
@@ -100,7 +101,7 @@ const CreateLinkForm = (props: { className: string }) => {
 
   const shortenedUrl = useMemo((): string | undefined => {
     // get app url
-    const appUrl = window.location.origin;
+    const appUrl = getBasrUrl();
 
     // get shortened url
     const shortenedUrl = mutation.data?.link_id;
