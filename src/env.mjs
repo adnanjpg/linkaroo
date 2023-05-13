@@ -21,7 +21,7 @@ export const env = createEnv({
     // DON'T USE DIRECTLY IN CLIENT COMPONENTS. wrap in a function 
     // that returns window.location.origin on client mode and this
     // value on SSR mode.
-    NEXT_PUBLIC_BASE_URL: z.string().url().min(1),
+    // NEXT_PUBLIC_BASE_URL: z.string().url().min(1),
     NEXT_PUBLIC_TTESTT: z.string().url().min(1)
   },
 
@@ -33,7 +33,7 @@ export const env = createEnv({
     POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
     POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
     NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+    // NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
     NEXT_PUBLIC_TTESTT: process.env.NEXT_PUBLIC_TTESTT,
   },
 });
