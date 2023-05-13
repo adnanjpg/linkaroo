@@ -21,7 +21,7 @@ export const env = createEnv({
     // DON'T USE DIRECTLY IN CLIENT COMPONENTS. wrap in a function 
     // that returns window.location.origin on client mode and this
     // value on SSR mode.
-    NEXT_PUBLIC_BASE_URL: z.string().url().min(1),
+    NEXT_PUBLIC_BASE_URL: z.string().min(1),
   },
 
   /**
