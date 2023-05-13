@@ -64,7 +64,7 @@ if (!skip) {
       "❌ Invalid environment variables:",
       parsed.error.flatten().fieldErrors,
     );
-    throw new Error("Invalid environment variables");
+    throw new Error("errrr Invalid environment variables:" + parsed.error.flatten().fieldErrors);
   }
 
   env = new Proxy(parsed.data, {
