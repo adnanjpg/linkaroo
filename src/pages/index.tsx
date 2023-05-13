@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useCallback, useMemo, useState } from "react";
@@ -8,6 +6,8 @@ import { api } from "~/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import getBaseUrl from "./helpers/getBaseUrl";
+
+import { CopyAll, GitHub } from "@mui/icons-material";
 
 const CopyLinkButton = (props: { shortUrl: string }) => {
   const showCopyToast = useCallback(() => {
@@ -37,14 +37,14 @@ const CopyLinkButton = (props: { shortUrl: string }) => {
   return (
     <>
       <button
-        className="flex flex-row justify-between rounded-xl border border-dashed border-pink-500 px-2 py-1"
+        className="flex flex-row items-center justify-between rounded-xl border border-dashed border-pink-500 px-2 py-1"
         onClick={() => void copyShortenedUrl()}
       >
         <span className="grow-1  break-all text-start text-[hsl(280,100%,70%)]">
           {props.shortUrl}
         </span>
-        <span className="grow-0 rounded-xl bg-white/10 p-3 text-white hover:bg-white/20">
-          <FontAwesomeIcon icon={faCopy} />
+        <span className="grow-0 text-white">
+          <CopyAll />
         </span>
       </button>
     </>
@@ -56,6 +56,24 @@ const SuccessMessage = (props: { shortUrl: string }) => {
     <div className="flex max-w-fit flex-col gap-4 text-green-500">
       <div>Link created successfully🪄! here&apos;s your shortened link:</div>
       <CopyLinkButton shortUrl={props.shortUrl} />
+    </div>
+  );
+};
+
+const TheTitle = () => {
+  return (
+    <div className="flex grow-0 flex-row items-center gap-6">
+      <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+        Link<span className="text-[hsl(280,100%,70%)]">aroo</span>
+      </h1>
+      <a
+        href="https://github.com/adnanjpg/linkaroo"
+        target="_blank"
+        rel="noreferrer"
+        className="text-white hover:text-[hsl(280,100%,70%)]"
+      >
+        <GitHub />
+      </a>
     </div>
   );
 };
@@ -155,11 +173,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex min-h-screen flex-col items-center  gap-12 px-4 py-16 ">
-          <div className="grow-0">
-            <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-              Link<span className="text-[hsl(280,100%,70%)]">aroo</span>
-            </h1>
-          </div>
+          <TheTitle />
           <CreateLinkForm className="flex grow flex-col justify-center" />
         </div>
         <ToastContainer />
