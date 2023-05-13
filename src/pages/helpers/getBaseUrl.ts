@@ -2,9 +2,15 @@ import { env } from '~/env.mjs'
 
 export default function getBasrUrl(): string {
   // if window is undefined, we are in SSR mode
-  // then return env.BASE_URL
+  // then return env.NEXT_PUBLIC_BASE_URL
   if (typeof window === 'undefined') {
-    return env.NEXT_PUBLIC_BASE_URL
+    const val = env.NEXT_PUBLIC_BASE_URL
+
+    if (!val) {
+      throw new Error('NEXT_PUBLIC_BASE_URL is not defined')
+    }
+
+    return val
   }
 
   return window.location.origin
