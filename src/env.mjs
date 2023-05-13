@@ -64,7 +64,13 @@ if (!skip) {
       "❌ Invalid environment variables:",
       parsed.error.flatten().fieldErrors,
     );
-    throw new Error("errrr Invalid environment variables:" + parsed.error.flatten().fieldErrors);
+    throw new Error("errrr Invalid environment variables." +
+      `message: ${parsed.error.message}.` +
+      `fieldErrors: ${parsed.error.flatten().fieldErrors}.` +
+      `formErrors: ${parsed.error.flatten().formErrors}.` +
+      `cause: ${parsed.error.cause}.` +
+      `issues: ${parsed.error.issues}.`
+    );
   }
 
   env = new Proxy(parsed.data, {
